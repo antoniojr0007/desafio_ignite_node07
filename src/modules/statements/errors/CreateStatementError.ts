@@ -1,4 +1,4 @@
-import { AppError } from "../../../../shared/errors/AppError";
+import { AppError } from "../../../shared/errors/AppError";
 
 export namespace CreateStatementError {
   export class UserNotFound extends AppError {

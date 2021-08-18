@@ -7,4 +7,12 @@ export class AppError {
     this.message = message;
     this.statusCode = statusCode;
   }
+
+  getMessage() {
+    return this.message;
+  }
+
+  getStatusCode() {
+    return this.statusCode;
+  }
 }

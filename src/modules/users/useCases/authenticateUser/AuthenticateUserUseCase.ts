@@ -5,8 +5,8 @@ import { sign } from 'jsonwebtoken';
 import authConfig from '../../../../config/auth';
 
 import { IUsersRepository } from "../../repositories/IUsersRepository";
-import { IAuthenticateUserResponseDTO } from "./IAuthenticateUserResponseDTO";
-import { IncorrectEmailOrPasswordError } from "./IncorrectEmailOrPasswordError";
+import { IAuthenticateUserResponseDTO } from "../../dtos/IAuthenticateUserResponseDTO";
+import { IncorrectEmailOrPasswordError } from "../../errors/IncorrectEmailOrPasswordError";
 
 interface IRequest {
   email: string;
@@ -18,12 +18,12 @@ export class AuthenticateUserUseCase {
   constructor(
     @inject('UsersRepository')
     private usersRepository: IUsersRepository,
-  ) {}
+  ) { }
 
   async execute({ email, password }: IRequest): Promise<IAuthenticateUserResponseDTO> {
     const user = await this.usersRepository.findByEmail(email);
 
-    if(!user) {
+    if (!user) {
       throw new IncorrectEmailOrPasswordError();
     }
 
